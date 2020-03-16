@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 
 const MovieTabs = (props) => {
     const {sort_by, updateSortBy} = props;
@@ -7,10 +8,10 @@ const MovieTabs = (props) => {
         updateSortBy(value);
     };
 
-    const getClassLink = value => {
-        return `nav-link ${sort_by === value ?
-            "active" : ''}`
-    };
+    const getClassLink = value =>
+        classNames("nav-link", {active: sort_by === value});
+    // return `nav-link ${sort_by === value ? "active" : ''}` // without classnames
+
     return (
         <ul className="tabs nav nav-pills">
             <li className="nav-item">
