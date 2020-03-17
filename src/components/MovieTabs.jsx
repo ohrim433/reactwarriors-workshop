@@ -34,6 +34,6 @@ const MovieTabs = (props) => {
             </li>
         </ul>
     );
-}
+};
 
 export default MovieTabs;

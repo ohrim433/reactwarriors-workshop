@@ -1,18 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
 
-class MovieItem extends React.Component {
-  state = {
-    willWatch: false
-  };
+const MovieItem = ({
+    data,
+    deleteMovie,
+    addMovieToWillWatch,
+    deleteMovieFromWillWatch
+}) => {
 
-  render() {
-    const {
-      data,
-      deleteMovie,
-      addMovieToWillWatch,
-      deleteMovieFromWillWatch
-    } = this.props;
-    // props.data = {};
+    const [willWatch, setWillWatch] = useState(false);
+
     return (
       <div className="card">
         <img
@@ -25,14 +21,12 @@ class MovieItem extends React.Component {
           <h6 className="card-title">{data.title}</h6>
           <div className="d-flex justify-content-between align-items-center">
             <p className="mb-0">Rating: {data.vote_average}</p>
-            {this.state.willWatch ? (
+            {willWatch ? (
               <button
                 type="button"
                 className="btn btn-success"
                 onClick={() => {
-                  this.setState({
-                    willWatch: false
-                  });
+                    setWillWatch(false);
                   deleteMovieFromWillWatch(data);
                 }}
               >
@@ -43,9 +37,7 @@ class MovieItem extends React.Component {
                   type="button"
                   className="btn btn-secondary"
                   onClick={() => {
-                    this.setState({
-                      willWatch: true
-                    });
+                      setWillWatch(true);
                     addMovieToWillWatch(data);
                   }}
                 >
@@ -64,7 +56,6 @@ class MovieItem extends React.Component {
         </div>
       </div>
     );
-  }
-}
+};
 
 export default MovieItem;
